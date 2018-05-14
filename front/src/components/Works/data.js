@@ -12,7 +12,7 @@ export default {
       by: {
         name: 'John Green',
         post: 'Partner, Incrane Technologies',
-        avatar: 'avatar.jpg'
+        avatar: 'john-green.jpg'
       }
     }
   },
@@ -46,11 +46,11 @@ export default {
     role: ['UI/UX Design', 'Full-Stack Development'],
     subtitle: `Helping exemplary athletes succeed with collegiate recruiters`,
     quote: {
-      content: `TODO`,
+      content: `Namanyay is an excellent full-stack developer. Hired him for a startup MVP, which he built in 2.5 months using Vue & Express. He makes great development decisions and wrote an extensible app that we could integrate with our sports statistics & blogging platforms. Highly recommended if you're looking for someone to build a quick MVP.`,
       by: {
         name: 'Mitchell Bregman',
-        post: 'Founder, ASA Recruiting',
-        avatar: 'avatar.jpg'
+        post: 'Consultant, ASA Recruiting',
+        avatar: 'mitchell-bregman.jpg'
       }
     },
     description: [
