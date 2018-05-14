@@ -1,5 +1,5 @@
 <template lang="pug">
-  .media(:style="mediaBgStyle")
+  .media(:style="mediaBgStyle" @mousemove="tiltMockup")
     .wrap
       .item
         .video-container(:style="videoBgStyle")
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import {TweenMax, Power4} from 'gsap'
+
 export default {
   name: 'Media',
   props: ['data'],
@@ -27,6 +29,47 @@ export default {
         background: `linear-gradient(45deg, rgba(0,0,0,.3), rgba(0,0,0,.1)), url(${this.posterUrl})`
       }
     }
+  },
+  methods: {
+    getXY (evt, element) {
+      const rect = element.getBoundingClientRect()
+      const scrollTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop
+      const scrollLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft
+      const elementLeft = rect.left + scrollLeft
+      const elementTop = rect.top + scrollTop
+
+      const x = evt.pageX - elementLeft
+      const y = evt.pageY - elementTop
+
+      return { x, y }
+    },
+
+    tiltMockup (e) {
+      const m = this.getXY(e, e.target) // Position of mouse relative to element
+      const pos = { // Relative position with width & height of element
+        w: m.x * 100 / e.target.offsetWidth,
+        h: m.y * 100 / e.target.offsetHeight
+      }
+      const item = e.target.querySelector('.item')
+
+      if (item) {
+        TweenMax.to(item, 1, {
+          rotationX: 25 - (0.15 * pos.h),
+          rotationY: 15 + (0.15 * pos.w),
+          ease: Power4.easeOut
+        })
+      }
+    },
+
+    setInitialMockupTilts () {
+      TweenMax.set('.item', {
+        rotationX: 25,
+        rotationY: 15
+      })
+    }
+  },
+  mounted () {
+    this.setInitialMockupTilts()
   }
 }
 </script>
@@ -55,7 +98,6 @@ export default {
     max-width 40em
     margin 0 auto
     position relative
-    transform rotateX(15deg) rotateY(25deg)
     transform-style preserve-3d
     backface-visibility hidden
     z-index 5
@@ -99,4 +141,5 @@ export default {
   video
     display block
     width 100%
+    object-fit cover
 </style>
