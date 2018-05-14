@@ -11,7 +11,7 @@
               p(v-if="isAccepting") Accepting new projects for {{ currentQuarter }}.
 
               p Don't like forms? Write to me at&nbsp;
-                a(href="mailto:make@nmn.gl") hi@nmn.gl
+                a(href="mailto:mail@namanyayg.com") mail@namanyayg.com
           .col-md-6.offset-md-2
             form(@submit.prevent="submitRfq")
               label.control

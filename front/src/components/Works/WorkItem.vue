@@ -1,12 +1,6 @@
 <template lang="pug">
   section.work(:class="`work--${data.namespace}`")
-    .media(:style="mediaBgStyle")
-      .wrap
-        .item
-          .video-container(:style="videoBgStyle")
-            .shadow
-            video(:poster="posterUrl" autoplay loop)
-              source(:src="videoUrl" type="video/mp4")
+    Media(:data="data")
     .content
       .wrap
         header
@@ -32,24 +26,13 @@
 </template>
 
 <script>
+import Media from './Media'
+
 export default {
   name: 'Work',
   props: ['data'],
-  data () {
-    return {
-      mediaBgStyle: {
-        backgroundImage: `url('/static/portfolio/backgrounds/${this.data.namespace}.jpg')`
-      }
-    }
-  },
-  computed: {
-    videoUrl () { return `/static/portfolio/${this.data.media.video}.mp4` },
-    posterUrl () { return `/static/portfolio/${this.data.media.video}.jpg` },
-    videoBgStyle () {
-      return {
-        background: `linear-gradient(45deg, rgba(0,0,0,.3), rgba(0,0,0,.1)), url(${this.posterUrl})`
-      }
-    }
+  components: {
+    Media
   },
   created () {
     console.log(this.data)
@@ -61,60 +44,6 @@ export default {
 .work
   margin 0 0 12em
   background #fff
-
-  .media
-    background #eeeeee
-    padding 6em 0
-    background-size cover
-    perspective 100em
-
-    .item
-      max-width 40em
-      margin 0 auto
-      position relative
-      transform rotateX(15deg) rotateY(25deg)
-      transform-style preserve-3d
-      backface-visibility hidden
-
-    .video-container
-      display block
-      max-width 100%
-      background-size 0 cover
-
-      .shadow
-        position absolute
-        top 1em
-        left 1em
-        right 1em
-        bottom 1em
-        background rgba(0, 0, 0, .5)
-        box-shadow 0 0 3em 1em
-        transform translateZ(-2em) translateY(.5em)
-
-      &:before,
-      &:after
-        content ''
-        position absolute
-        top 0
-        left 0
-        right 0
-        bottom 0
-        background inherit
-        transform-origin left center
-        transform rotateY(90deg)
-        width .75em
-
-      &:after
-        transform-origin bottom center
-        transform rotateX(90deg)
-        width 100%
-        top auto
-        bottom 0
-        height .75em
-
-    video
-      display block
-      width 100%
 
 header
   display flex

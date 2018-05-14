@@ -7,6 +7,14 @@
 </template>
 
 <script>
+/**
+ * @TODO
+ *
+ * Favicons
+ * Add project-based views of the website, a la rightmessage
+ * UntitleClothing integration
+ */
+
 import CursorBall from './components/CursorBall'
 import Colophon from './components/Colophon'
 

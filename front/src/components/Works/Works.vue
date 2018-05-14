@@ -20,7 +20,7 @@ export default {
   methods: {
     getWorks (category) {
       const mapping = {
-        featured: ['asa', 'autolo', 'cyankart', 'asianf']
+        featured: ['asa', 'autolo', 'asianfanfics', 'lownotes', 'cyankart']
       }
 
       return mapping[category]

@@ -58,8 +58,26 @@ export default {
       `The webapp is built with a Vue + Express stack, and leverages intense caching to provide a fast and seamless experience to the customer. A role-based user authentication system is used to ensure that logged in coaches and athletes get tailored experiences.`
     ]
   },
-  asianf: {
-    namespace: 'asianf',
+  lownotes: {
+    namespace: 'lownotes',
+    media: {
+      video: 'lownotes'
+    },
+    title: 'Low Notes Music',
+    role: ['Full-Stack Web Development'],
+    subtitle: `Searchable, downloadable music collection of NYC-based composer`,
+    quote: {
+      content:
+        'Namanyay built a searchable audio database website for me (a performant full-stack web application using Vue and Express) that exceeded expectations. Namanyay was easy to work with and provided excellent value and skills. Highly recommended.',
+      by: {
+        name: 'Aaron Paul Low',
+        post: 'Composer',
+        avatar: 'aaron-paul-low.jpg'
+      }
+    }
+  },
+  asianfanfics: {
+    namespace: 'asianfanfics',
     media: {
       video: 'asianfanfics'
     },
@@ -67,7 +85,8 @@ export default {
     role: ['UI/UX Design', 'Front-End Development'],
     subtitle: `Enhancing Japan's largest online fanfiction literature community`,
     quote: {
-      content: 'Namanyay is very receptive to client and user needs and ensures that the final product not only meets client expectations, but also provides insight that adds extra value to users. Ad CPM and click through rates have had a significant increase as well after our new responsive design was released.',
+      content:
+        'Namanyay is very receptive to client and user needs and ensures that the final product not only meets client expectations, but also provides insight that adds extra value to users. Ad CPM and click through rates have had a significant increase as well after our new responsive design was released.',
       by: {
         name: 'Jason Ado',
         post: 'Founder, Jado Interactive',
