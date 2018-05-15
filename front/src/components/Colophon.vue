@@ -2,9 +2,9 @@
   footer.colophon.page
     .wrap
       .row
-        .col-md-6
+        .col-md-6.col-2
           img.logo(src="/static/namanyayg-logo.svg")
-        .col-md-3
+        .col-md-3.col-6
           p
             strong Namanyay Goel ⚡
           p Web & Blockchain Consultant
@@ -12,7 +12,7 @@
             a(href="mailto:mail@namanyayg.com") mail@namanyayg.com
           p
             a(href="https://symmetrycode.com/") symmetrycode &middot; blog
-        .col-md-3
+        .col-md-3.col-4
           p
             a(href="https://github.com/namanyayg") github
           p
@@ -45,4 +45,9 @@ p
   &:hover
     transform rotate(360deg)
 
+@media (max-width 36em)
+  .colophon
+    font-size .875em
+  .logo
+    height 1.75em
 </style>

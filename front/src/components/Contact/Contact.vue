@@ -4,7 +4,7 @@
       .wrap
         .row
           .col-md-4
-            h1 Contact
+            .title Contact
             .content
               p Tell me about yourself, your brand, and your goals. Let's create something extraordinary, together.
 
@@ -77,7 +77,7 @@ a
   font-weight 700
   color white
 
-h1
+.title
   font-size 4em
   font-weight 700
   margin 0 0 1em
@@ -95,4 +95,21 @@ button
   background #000
   padding 1.5em
   color #fff
+
+@media (max-width 60em)
+  .content
+    font-size 1.25em
+
+@media (max-width 48em)
+  .title
+    margin 0 0 .5em
+
+  .page
+    padding 6em 0 8em
+
+@media (max-width 30em)
+  .title
+    font-size 2.75em
+    line-height 1
+    margin 0 0 2rem
 </style>

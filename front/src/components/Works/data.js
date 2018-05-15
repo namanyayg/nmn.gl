@@ -11,7 +11,7 @@ export default {
       content: `Namanyay is easy to work with, and has a great eye for UI/UX detail. He designed the site around our existing branding with clear, concise elements; and I couldn't be happier with the result. The contract initially was for just for design, but he also helped with completing the frontend when our original developer went missing.`,
       by: {
         name: 'John Green',
-        post: 'Partner, Incrane Technologies',
+        post: 'Partner, Incrane Tech',
         avatar: 'john-green.jpg'
       }
     }
@@ -49,7 +49,7 @@ export default {
       content: `Namanyay is an excellent full-stack developer. Hired him for a startup MVP, which he built in 2.5 months using Vue & Express. He makes great development decisions and wrote an extensible app that we could integrate with our sports statistics & blogging platforms. Highly recommended if you're looking for someone to build a quick MVP.`,
       by: {
         name: 'Mitchell Bregman',
-        post: 'Consultant, ASA Recruiting',
+        post: 'ASA Recruiting',
         avatar: 'mitchell-bregman.jpg'
       }
     },
@@ -89,7 +89,7 @@ export default {
         'Namanyay is very receptive to client and user needs and ensures that the final product not only meets client expectations, but also provides insight that adds extra value to users. Ad CPM and click through rates have had a significant increase as well after our new responsive design was released.',
       by: {
         name: 'Jason Ado',
-        post: 'Founder, Jado Interactive',
+        post: 'Jado Interactive',
         avatar: 'jason-ado.jpg'
       }
     }
