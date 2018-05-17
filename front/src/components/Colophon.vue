@@ -3,7 +3,7 @@
     .wrap
       .row
         .col-md-6.col-2
-          img.logo(src="/static/namanyayg-logo.svg")
+          Logo.logo
         .col-md-3.col-6
           p
             strong Namanyay Goel ⚡
@@ -24,8 +24,13 @@
 </template>
 
 <script>
+import Logo from './Logo'
+
 export default {
-  name: 'Colophon'
+  name: 'Colophon',
+  components: {
+    Logo
+  }
 }
 </script>
 

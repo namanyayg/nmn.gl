@@ -21,7 +21,7 @@ export default {
   methods: {
     requiresMorph (target) {
       return ['button', 'a'].includes(target.tagName.toLowerCase()) ||
-        target.className.includes('button')
+        (typeof target.className === 'string' && target.className.includes('button'))
     },
 
     moveCursor (e) {

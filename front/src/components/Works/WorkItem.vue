@@ -36,9 +36,6 @@ export default {
   props: ['data'],
   components: {
     Media
-  },
-  created () {
-    console.log(this.data)
   }
 }
 </script>
