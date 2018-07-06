@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.work(:class="`work--${data.namespace}`")
+  section.scene.work(:class="`work--${data.namespace}`")
     Media(:data="data")
     .content
       .wrap
@@ -13,12 +13,12 @@
               span {{ data.role.join(' &loz; ') }}
           .subhead
             h2.subtitle(v-html="data.subtitle")
-            .view-case
+            //- .view-case
               .button Read Full Case
         blockquote.quote
           p {{ data.quote.content }}
           footer.foot
-            .m-view-case
+            //- .m-view-case
               .button Read Case
             cite.cite
               .avatar
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { TweenLite, Power4 } from 'gsap'
 import Media from './Media'
 
 export default {
@@ -36,14 +37,74 @@ export default {
   props: ['data'],
   components: {
     Media
+  },
+  methods: {
+    beginAnimate (e) {
+      // Scene is beginning!
+      this.$el.classList.remove('scene--set')
+
+      // Quick bind for this scenes elements
+      const $ = el => this.$el.querySelector(el)
+
+      TweenLite.from($('.media .bg'), 0.75, {
+        opacity: 0,
+        x: 20,
+        ease: Power4.easeOut
+      })
+      TweenLite.from($('.media .item-container'), 1, {
+        opacity: 0,
+        scale: 1.1,
+        ease: Power4.easeInOut
+      })
+      TweenLite.from($('.title'), 0.75, {
+        opacity: 0,
+        x: -100,
+        ease: Power4.easeOut,
+        delay: 0.625
+      })
+      TweenLite.from($('.subtitle'), 0.75, {
+        opacity: 0,
+        x: 100,
+        ease: Power4.easeOut,
+        delay: 0.75
+      })
+      TweenLite.from($('.role'), 0.75, {
+        opacity: 0,
+        y: 20,
+        ease: Power4.easeOut,
+        delay: 0.875
+      })
+      TweenLite.from($('.quote p'), 0.75, {
+        opacity: 0,
+        y: 50,
+        ease: Power4.easeOut,
+        delay: 1
+      })
+      TweenLite.from($('.quote .foot'), 0.75, {
+        opacity: 0,
+        x: 50,
+        ease: Power4.easeOut,
+        delay: 1.125
+      })
+    }
+  },
+  mounted () {
+    // Fire initial animation as soon as `enliven` is dispatched
+    this.$el.addEventListener('enliven', this.beginAnimate)
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+@import '~@/styl/_variables'
+
+// Unitialized scene is set to hidden
+.scene--set
+  opacity 0
+
 .work
   margin 0 0 12em
-  background #fff
+  background $color--work-bg
 
 .header
   display flex
@@ -58,12 +119,12 @@ export default {
   span
     z-index 5
     position relative
-    text-shadow 3px 3px white, -3px 3px white
+    text-shadow 3px 3px $color--work-bg, -3px 3px $color--work-bg
 
     &:after
       content ''
       height .125em
-      background linear-gradient(45deg, rgba(black, .05), rgba(black, .1))
+      background linear-gradient(45deg, $color--work-title-underline--light, $color--work-title-underline--dark)
       position absolute
       left 0
       right 0
@@ -102,13 +163,12 @@ export default {
   font-size 1.5em
   margin 0 0 1rem
   font-style italic
-  color #999999
+  color $color--subtitle-text
   font-weight 300
 
 .quote
   font-size 1.5em
   margin 6rem 0 0
-  // font-family 'adobe-garamond-pro'
   position relative
   letter-spacing -.3px
   font-weight 400
@@ -126,7 +186,7 @@ export default {
       font-weight bold
       z-index -1
       margin -.25em 0 0 -.625em
-      color #eee
+      color $color--mark
 
     &:after
       content '”'
@@ -179,7 +239,7 @@ export default {
       content ' '
       height 2px
       width 2em
-      background #eee
+      background $color--mark
       position absolute
       margin-top 1.5em
       transform translateX(-50%)
@@ -193,7 +253,7 @@ export default {
     display block
 
   .role
-    color #999
+    color $color--subtitle-text
 
   .subhead,
   .marker

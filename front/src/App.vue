@@ -39,12 +39,12 @@ export default {
 
 body
   font-family Europa, monospace
-  color #353535
+  color $color--body-text
   cursor none
   user-select none
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
 
 h1, h2, h3, h4, h5, h6
-  color #222
+  color $color--title-text
 </style>

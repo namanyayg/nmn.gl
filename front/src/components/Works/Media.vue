@@ -1,15 +1,17 @@
 <template lang="pug">
-  .media(:style="mediaBgStyle" @mousemove="tiltMockup")
-    .wrap
-      .item
-        .video-container(:style="videoBgStyle")
-          .shadow
-          video(:poster="posterUrl" autoplay loop muted)
-            source(:src="videoUrl" type="video/mp4")
+  .media(@mousemove="tiltMockup")
+    .bg(:style="mediaBgStyle" )
+    .item-container
+      .wrap
+        .item
+          .video-container(:style="videoBgStyle")
+            .shadow
+            video(:poster="posterUrl" autoplay loop muted)
+              source(:src="videoUrl" type="video/mp4")
 </template>
 
 <script>
-import {TweenMax, Power4} from 'gsap'
+import {TweenLite, Power4} from 'gsap'
 
 export default {
   name: 'Media',
@@ -53,7 +55,7 @@ export default {
       const item = e.target.querySelector('.item')
 
       if (item) {
-        TweenMax.to(item, 1, {
+        TweenLite.to(item, 1, {
           rotationX: 25 - (0.15 * pos.h),
           rotationY: 15 + (0.15 * pos.w),
           ease: Power4.easeOut
@@ -62,7 +64,7 @@ export default {
     },
 
     setInitialMockupTilts () {
-      TweenMax.set('.item', {
+      TweenLite.set('.item', {
         rotationX: 25,
         rotationY: 15
       })
@@ -76,10 +78,16 @@ export default {
 
 <style lang="stylus" scoped>
 .media
+  position relative
+
+.bg
   background #eeeeee
   background-size cover
-  perspective 100em
-  position relative
+  position absolute
+  left 0
+  right 0
+  top 0
+  bottom 0
 
   &:after
     content ''
@@ -90,53 +98,56 @@ export default {
     bottom 0
     background linear-gradient(bottom, white, rgba(white, 0) 40%)
 
-  .wrap
-    position relative
-    top -1em
+.wrap
+  position relative
+  top -1em
 
-  .item
-    max-width 40em
-    margin 0 auto
-    position relative
-    transform-style preserve-3d
-    backface-visibility hidden
-    z-index 5
+.item-container
+  perspective 100em
 
-  .video-container
-    display block
-    max-width 100%
-    background-size 0 cover
+.item
+  max-width 40em
+  margin 0 auto
+  position relative
+  transform-style preserve-3d
+  backface-visibility hidden
+  z-index 5
 
-    .shadow
-      position absolute
-      top 1em
-      left 1em
-      right 1em
-      bottom 1em
-      background rgba(0, 0, 0, .5)
-      box-shadow 0 0 3em 1em rgba(0,0,0,.6)
-      transform translateZ(-2em) translateY(.5em)
+.video-container
+  display block
+  max-width 100%
+  background-size 0 cover
 
-    &:before,
-    &:after
-      content ''
-      position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
-      background inherit
-      transform-origin left center
-      transform rotateY(90deg)
-      width 1em
+  .shadow
+    position absolute
+    top 1em
+    left 1em
+    right 1em
+    bottom 1em
+    background rgba(0, 0, 0, .5)
+    box-shadow 0 0 3em 1em rgba(0,0,0,.6)
+    transform translateZ(-2em) translateY(.5em)
 
-    &:after
-      transform-origin bottom center
-      transform rotateX(90deg)
-      width 100%
-      top auto
-      bottom 0
-      height 1em
+  &:before,
+  &:after
+    content ''
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background inherit
+    transform-origin left center
+    transform rotateY(90deg)
+    width 1em
+
+  &:after
+    transform-origin bottom center
+    transform rotateX(90deg)
+    width 100%
+    top auto
+    bottom 0
+    height 1em
 
   video
     display block

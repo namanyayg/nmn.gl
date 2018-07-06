@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {TweenMax, Power4, Elastic, Back} from 'gsap'
+import {TweenLite, Power4, Elastic, Back} from 'gsap'
 
 export default {
   name: 'CursorBall',
@@ -32,12 +32,12 @@ export default {
       const cursorBig = '.js-cursor__big'
 
       // Move the cursor ball to the mouse position
-      TweenMax.set(cursorSmall, {
+      TweenLite.set(cursorSmall, {
         x: e.clientX - 5,
         y: e.clientY - 10
       })
       // Ensure a small lag for the larger ball
-      TweenMax.to(cursorBig, LAG, {
+      TweenLite.to(cursorBig, LAG, {
         x: e.clientX - 15,
         y: e.clientY - 12.5,
         ease: Power4.easeOut
@@ -46,12 +46,12 @@ export default {
       // Check the target to morph mouse
       if (this.requiresMorph(target)) {
         if (!this.isMorphed) {
-          TweenMax.to(cursorSmall, 0.3, {
+          TweenLite.to(cursorSmall, 0.3, {
             ease: Power4.easeOut,
             scale: 0.1,
             autoAlpha: 0
           })
-          TweenMax.to(cursorBig, 1, {
+          TweenLite.to(cursorBig, 1, {
             scale: 2,
             ease: Elastic.easeOut.config(1, 0.5),
             onStart: () => {
@@ -61,12 +61,12 @@ export default {
         }
       } else {
         if (this.isMorphed) {
-          TweenMax.to(cursorSmall, 0.5, {
+          TweenLite.to(cursorSmall, 0.5, {
             ease: Power4.easeOut,
             scale: 1,
             autoAlpha: 1
           })
-          TweenMax.to(cursorBig, 0.5, {
+          TweenLite.to(cursorBig, 0.5, {
             scale: 1,
             ease: Back.easeOut.config(1.7),
             onStart: () => {
@@ -84,20 +84,20 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.cursor {
-  pointer-events: none;
-  cursor: none;
-}
-.cursor__ball {
-    position: fixed;
-    top: 0;
-    left: 0;
-    mix-blend-mode: difference;
-    z-index: 1000;
-    cursor: none !important;
-}
+@import '~@/styl/_variables'
 
-.cursor-circle__inner {
-    fill: #eee;
-}
+.cursor
+  pointer-events none
+  cursor none
+
+.cursor__ball
+    position fixed
+    top 0
+    left 0
+    mix-blend-mode difference
+    z-index 1000
+    cursor none !important
+
+.cursor-circle__inner
+    fill $color--hero-text
 </style>
