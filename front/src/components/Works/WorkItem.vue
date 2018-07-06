@@ -260,9 +260,11 @@ export default {
     display none
 
   .quote
-    margin 3.5rem 0 0
+    margin 3rem 0 0
+    // text-align center
 
     p
+      margin 0 0 2rem
       // Quotes look weird
       &:before, &:after
         font-size 1.5em
@@ -272,7 +274,8 @@ export default {
         margin -.25em 0 0 0
 
     .foot
-      justify-content space-between
+      justify-content center
+      text-align left
 
 @media (max-width 30em)
   .work
@@ -289,7 +292,7 @@ export default {
     font-size 1em
 
     p
-      margin-bottom 2em
+      margin 0 0 1rem
 
       &:before,
       &:after

@@ -54,4 +54,22 @@ export default {
   font-style italic
   font-size 1.5em
   font-weight 300
+
+@media (max-width 67.5em)
+  .header
+    flex-direction column
+    justify-content center
+    margin 0 0 2em
+    text-align center
+
+  .title
+    margin 0
+
+@media (max-width 60em)
+  .subtitle
+    font-size 1.125em
+
+@media (max-width 50em)
+  .subtitle
+    font-size 1em
 </style>

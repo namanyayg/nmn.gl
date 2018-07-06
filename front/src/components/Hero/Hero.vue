@@ -4,9 +4,8 @@
       Masthead(back="dark").masthead
       Bg
       .wrap
-        .row
-          .col.col-md-8
-            h1.title <span>Crafting comprehensive</span> <span><strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong></span> <span>to&nbsp;your business&nbsp;problems.</span>
+        h1.title
+          <span>Crafting comprehensive</span><br><span><strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong><span class="highlight"></span></span><br><span>to&nbsp;your business&nbsp;problems.</span>
         .name Namanyay Goel
       .wrap.hero__bottom
         Scroller(color="light")
@@ -32,10 +31,12 @@ export default {
   methods: {
     beginAnimation () {
       this.$el.classList.remove('scene--set')
+
       const $ = el => this.$el.querySelector(el)
+      const $$ = el => this.$el.querySelectorAll(el)
 
       ;[1, 2, 3].map(i => {
-        TweenLite.from($(`.title span:nth-child(${i})`), 1, {
+        TweenLite.from($$(`.title > span`)[i - 1], 1, {
           y: 25,
           opacity: 0,
           ease: Power4.easeOut,
@@ -44,11 +45,19 @@ export default {
         })
       })
 
+      TweenLite.from($('.highlight'), 2, {
+        delay: 1,
+        scaleX: 0,
+        ease: Power4.easeOut
+      })
+
+      const nameTransition = window.matchMedia('(max-width: 55em)').matches ? { y: 50 } : { x: 50 }
+
       TweenLite.from($('.name'), 2, {
         delay: 0.75,
-        x: 50,
         ease: Elastic.easeOut.config(1, 0.75),
-        opacity: 0
+        opacity: 0,
+        ...nameTransition
       })
 
       TweenLite.from($('.hero__bottom'), 1, {
@@ -87,6 +96,7 @@ export default {
   position relative
 
 .starry-night
+  z-index -2
   position absolute
   left 0
   right 0
@@ -104,11 +114,22 @@ export default {
 
   span
     display inline-block
+    position relative
     transform-origin center left
 
   strong
     font-weight 700
     color $color--hero-title
+
+  .highlight
+    position absolute
+    left 0
+    right 0
+    bottom .25rem
+    height .375rem
+    transform perspective(10)
+    background linear-gradient(45deg, darken($color--highlight, 10%), $color--highlight, darken($color--highlight, 20%))
+    z-index -1
 
 .hero-button
   padding 2em 5em
@@ -124,4 +145,45 @@ export default {
   letter-spacing .25em
   transform rotate(-90deg) translateY(-25%) translateX(57%)
   transform-origin center right
+
+@media (max-width 82.5em)
+  .title
+    font-size 3em
+
+    .highlight
+      height .25rem
+
+  .name
+    font-size 1em
+
+@media (max-width 55em)
+  .name
+    position static
+    transform none
+    font-size 1.375em
+    margin 3em 0 0
+
+  .masthead
+    margin 0 0 6em
+
+  .hero__bottom
+    padding-bottom 9em
+
+@media (max-width 45em)
+  .title
+    font-size 2.5em
+
+  .name
+    font-size 1.125em
+
+@media (max-width 37.5em)
+  .title
+    font-size 2em
+
+  .name
+    font-size 1em
+
+@media (max-width 27.5em)
+  .title
+    font-size 1.675em
 </style>

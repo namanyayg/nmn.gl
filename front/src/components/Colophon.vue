@@ -75,6 +75,9 @@ export default {
   a
     color $color--subtitle-text
 
+    &:hover
+      color $color--highlight
+
 p
   margin 0 0 .25em
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page.scene
+  .page.scene#contact
     .contact
       .wrap
         .row
@@ -13,13 +13,17 @@
               p Don't like forms? Write to me at&nbsp;
                 a(href="mailto:mail@namanyayg.com") mail@namanyayg.com
           .col-md-6.offset-md-2.persp
+            .thank-you
+              p
+                strong Thank you for reaching out.
+              p I have received your message and will get back to you soon.
             form(@submit.prevent="submitRfq")
               label.control
                 input.element(v-model="rfq.name" required)
                 span.label(class="") Name
                 .foci
               label.control
-                input.element(v-model="rfq.from" required)
+                input.element(type="email" v-model="rfq.from" required)
                 span.label Email
                 .foci
               label.control
@@ -67,9 +71,29 @@ export default {
       console.log(this.rfq)
       const { rfq } = this
 
+      const $ = el => this.$el.querySelector(el)
+      const $$ = el => this.$el.querySelectorAll(el)
+
       this.axios.post('/namaste', { rfq })
         .then(res => {
+          // Make the existing form disappear
+          ;[1, 2, 3, 4, 5].map(i => {
+            TweenLite.to($$(`.control`)[i - 1], 0.5, {
+              rotationY: -20,
+              opacity: 0,
+              ease: Power4.easeIn,
+              delay: 0.125 * (i - 1)
+            })
+          })
 
+          // Bring in the thanks
+          TweenLite.to($('.thank-you'), 1, {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            ease: Power4.easeOut,
+            delay: 1
+          })
         })
     },
 
@@ -126,8 +150,37 @@ a
   font-weight 700
   color white
 
+  &:hover
+    color $color--highlight
+
+.thank-you
+  font-size 1.25em
+  padding 1.5em 2em
+  box-sizing border-box
+  font-weight 300
+  background $color--alt
+  color rgba(white, .8)
+  position absolute
+  top 0
+  left 15px
+  right 15px
+  z-index -1
+  opacity 0
+  transform translateY(3em)
+
+  strong
+    font-weight 400
+    color white
+
+  p
+    margin 0
+
+    + p
+      margin-top .5em
+
 .persp
   perspective 800
+  position relative
 
   &:nth-child(1)
     perspective-origin top center
@@ -155,9 +208,6 @@ a
 input, textarea, select
   color $color--hero-text--light
 
-  &:after
-    background
-
 .button-container
   display flex
   justify-content flex-end
@@ -182,6 +232,9 @@ button
 
   .page
     padding 6em 0 8em
+
+  .thank-you
+    margin 2em 0 0
 
 @media (max-width 30em)
   .title

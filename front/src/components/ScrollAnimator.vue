@@ -43,7 +43,7 @@ export default {
      */
     animateVisibleScenes (e) {
       // https://stackoverflow.com/a/44422472
-      const windowScrolledToBottom = _ => (window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight
+      const windowScrolledToBottom = _ => (window.innerHeight + Math.ceil(window.pageYOffset)) + 100 >= document.body.offsetHeight
 
       this.scenes
         /**

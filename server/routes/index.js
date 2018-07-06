@@ -22,7 +22,7 @@ router.post('/namaste', (req, res) => {
   sgMail.send({
     to: 'mail@namanyayg.com',
     from,
-    subject: `[W] [N] ${subject}`,
+    subject: `[W] [N]`,
     text: `${message}\n\nBudget: ${budget}`,
     html: `${message}<br><br>Budget: ${budget}`
   })

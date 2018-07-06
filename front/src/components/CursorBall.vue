@@ -1,5 +1,5 @@
 <template lang="pug">
-  .cursor.js-cursor
+  .cursor.js-cursor(v-show="showCursor")
     .cursor__ball.js-cursor__big
       svg.cursor-circle.js-cursor-circle(height='30', width='30')
         circle.cursor-circle__inner(cx='15', cy='15', r='12', stroke='transparent', stroke-width='0')
@@ -15,7 +15,14 @@ export default {
   name: 'CursorBall',
   data () {
     return {
-      isMorphed: false
+      isMorphed: false,
+      userTouched: false,
+      userHovered: false
+    }
+  },
+  computed: {
+    showCursor () {
+      return !this.userTouched && this.userHovered
     }
   },
   methods: {
@@ -30,6 +37,10 @@ export default {
 
       const cursorSmall = '.js-cursor__small'
       const cursorBig = '.js-cursor__big'
+
+      // User has hovered from a mouse-like device,
+      // indiciate
+      this.userHovered = true
 
       // Move the cursor ball to the mouse position
       TweenLite.set(cursorSmall, {
@@ -79,6 +90,9 @@ export default {
   },
   created () {
     window.addEventListener('mousemove', this.moveCursor)
+    window.addEventListener('touchstart', _ => {
+      this.userTouched = true
+    })
   }
 }
 </script>

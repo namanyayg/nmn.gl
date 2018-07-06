@@ -4,16 +4,32 @@
       .logo
         Logo(:stroke="strokeColor")
       nav.menu
-        a.menu--item(href="#work") Works
-        a.menu--item(href="#contact") Contact
+        a.menu--item(href="#works" v-smooth-scroll) Works
+        a.menu--item(href="#contact" v-smooth-scroll) Contact
 </template>
 
 <script>
 import { TweenLite, Elastic } from 'gsap'
+import Vue from 'vue'
+import vueSmoothScroll from 'vue-smooth-scroll'
 import Logo from './Logo'
+
+Vue.use(vueSmoothScroll)
+
+// HACK: SUPPRESS WARNING FROM SMOOTH SCROLL
+const SMOOTHSCROLL_HACK = {
+  v: null,
+  smooth: null,
+  scroll: null
+} // END HACK
 
 export default {
   name: 'Masthead',
+  data () {
+    return {
+      ...SMOOTHSCROLL_HACK
+    }
+  },
   components: {
     Logo
   },
@@ -83,4 +99,10 @@ export default {
   text-decoration none
   padding 2em 0
   margin-left 3em
+  position relative
+  top 0
+
+  &:hover
+    top -.25em
+    color $color--highlight
 </style>
