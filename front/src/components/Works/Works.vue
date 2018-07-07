@@ -70,6 +70,9 @@ export default {
     font-size 1.125em
 
 @media (max-width 50em)
+  .title
+    font-size 3em
+
   .subtitle
     font-size 1em
 </style>

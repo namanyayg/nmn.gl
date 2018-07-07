@@ -153,4 +153,11 @@ export default {
     display block
     width 100%
     object-fit cover
+
+@media (max-width 40em)
+  .video-container
+    &:before
+      width .5em
+    &:after
+      height .5em
 </style>

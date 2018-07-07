@@ -8,7 +8,7 @@
           <span>Crafting comprehensive</span><br><span><strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong><span class="highlight"></span></span><br><span>to&nbsp;your business&nbsp;problems.</span>
         .name Namanyay Goel
       .wrap.hero__bottom
-        Scroller(color="light")
+        Scroller(color="light").scroller
 </template>
 
 <script>
@@ -168,6 +168,9 @@ export default {
 
   .hero__bottom
     padding-bottom 9em
+
+  .scroller
+    display none
 
 @media (max-width 45em)
   .title
