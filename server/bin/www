@@ -25,8 +25,8 @@ var server;
 
 
 if (process.env.NODE_ENV === 'production') {
-  const cert = fs.readFileSync('.sslcerts/fullchain.pem')
-  const key = fs.readFileSync('.sslcerts/privkey.pem')
+  const cert = fs.readFileSync('.sslcerts/fullchain.pem', 'utf8')
+  const key = fs.readFileSync('.sslcerts/privkey.pem', 'utf8')
 
   console.log(cert, key)
 
