@@ -20,7 +20,7 @@ router.post('/namaste', (req, res) => {
   let { from, subject, message, budget } = req.body.rfq
   message = xss(message)
   sgMail.send({
-    to: 'mail@namanyayg.com',
+    to: 'hi@nmn.gl',
     from,
     subject: `[W] [N]`,
     text: `${message}\n\nBudget: ${budget}`,
