@@ -87,6 +87,7 @@ export default {
           })
 
           // Bring in the thanks
+          $('.thank-you').style.zIndex = 2
           TweenLite.to($('.thank-you'), 1, {
             opacity: 1,
             y: 0,

@@ -4,8 +4,10 @@
       .logo
         Logo(:stroke="strokeColor")
       nav.menu
-        a.menu--item(href="#works" v-smooth-scroll) Works
-        a.menu--item(href="#contact" v-smooth-scroll) Contact
+        a.menu--item(href="#works" v-smooth-scroll)
+          span Works
+        a.menu--item(href="#contact" v-smooth-scroll)
+          span Contact
 </template>
 
 <script>
@@ -59,7 +61,7 @@ export default {
       })
 
       ;[1, 2].map(i => {
-        TweenLite.from($(`.menu--item:nth-child(${i})`), 1, {
+        TweenLite.from($(`.menu--item:nth-child(${i}) span`), 1, {
           y: -60,
           ease: Elastic.easeOut.config(1, 0.9),
           delay: 0.25 * i + 0.75
@@ -104,6 +106,9 @@ export default {
   margin-left 3em
   position relative
   top 0
+
+  span
+    display block
 
   &:hover
     top -.25em
