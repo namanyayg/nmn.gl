@@ -17,14 +17,14 @@ router.get('/health', (req, res) => {
  * Email message
  */
 router.post('/namaste', (req, res) => {
-  let { from, subject, message, budget } = req.body.rfq
+  let { from, message, budget } = req.body.rfq
   message = xss(message)
   sgMail.send({
     to: 'mail@namanyayg.com',
     from,
     subject: `[W] [N]`,
-    text: `${message}\n\nBudget: ${budget}`,
-    html: `${message}<br><br>Budget: ${budget}`
+    text: `${message}\n\nBudget: ${budget}\n\nFrom: ${from}`,
+    html: `${message}<br><br>Budget: ${budget}<br><br>From: ${from}`
   })
   res.send(200)
 })

@@ -10,7 +10,7 @@
             strong Namanyay Goel ⚡
           p Web & Blockchain Consultant
           p
-            a(href="mailto:hi@nmn.gl") hi@nmn.gl
+            a(href="https://github.com/namanyayg/nmn.gl") view source
           p
             a(href="https://symmetrycode.com/") symmetrycode &middot; blog
         .col-md-3.col-4.list
