@@ -9,8 +9,7 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 
-// let baseUrl = '//104.236.112.180:4242'
-let baseUrl = '//localhost:4242'
+let baseUrl = '//serve.nmn.gl'
 if (process.env.NODE_ENV === 'development') {
   baseUrl = '//localhost:4242'
 }
