@@ -25,9 +25,14 @@ var server;
 
 
 if (process.env.NODE_ENV === 'production') {
+  const cert = fs.readFileSync('.sslcerts/fullchain.pem')
+  const key = fs.readFileSync('.sslcerts/privkey.pem')
+
+  console.log(cert, key)
+
   server = https.createServer({
-    cert: fs.readFileSync('../.sslcerts/fullchain.pem'),
-    key: fs.readFileSync('../.sslcerts/privkey.pem')
+    cert,
+    key
   }, app)
 }
 else {
