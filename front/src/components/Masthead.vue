@@ -76,6 +76,9 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/styl/_variables'
 
+.scene--set
+  opacity 0
+
 .masthead
   border-bottom thin solid $color--hero-bg--border
   > .wrap
