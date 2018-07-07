@@ -4,10 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 
 var index = require('./routes/index');
 
 var app = express();
+
+app.use(helmet());
 
 // Allow CORS
 app.use(function (req, res, next) {
