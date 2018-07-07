@@ -24,10 +24,6 @@ export default {
     Scroller,
     Bg: HeroBg
   },
-  data () {
-    return {
-    }
-  },
   methods: {
     beginAnimation () {
       this.$el.classList.remove('scene--set')
@@ -96,7 +92,7 @@ export default {
   position relative
 
 .starry-night
-  z-index -2
+  // z-index -2
   position absolute
   left 0
   right 0
