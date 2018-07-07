@@ -10,8 +10,6 @@ var index = require('./routes/index');
 
 var app = express();
 
-app.use(helmet());
-
 // Allow CORS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,13 +17,15 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 
   // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.status(200).send('');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
   }
   else {
     next();
   }
 });
+
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
