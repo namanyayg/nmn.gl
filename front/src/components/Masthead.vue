@@ -83,6 +83,9 @@ export default {
 
 .masthead
   border-bottom thin solid $color--hero-bg--border
+  z-index 10
+  position relative
+
   > .wrap
     display flex
     align-items center

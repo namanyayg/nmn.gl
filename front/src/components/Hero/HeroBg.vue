@@ -1,15 +1,8 @@
 <template lang="pug">
-  canvas.starry-night
+  canvas.nightsky
 </template>
 
 <script>
-/**
- * INSPIRATION
- * https://unsplash.com/collections/365/night-sky
- * https://codepen.io/WillemCrnlssn/pen/JgFGs
- * https://codepen.io/bigsweater/pen/MyqZdQ
- */
-
 export default {
   name: 'HeroBg',
   data () {
@@ -29,14 +22,29 @@ export default {
   methods: {
     setDimensions () {
       const { $canvas } = this
-      const { height, width } = document.querySelector('.hero').getBoundingClientRect()
+      let { height, width } = document.querySelector('.hero').getBoundingClientRect()
 
+      // Get a large dimension (hypotenuse) to extend
+      // nightsky all over the screen and allow
+      // rotation of the canvas
+      let hyp = Math.floor(Math.sqrt(height ** 2 + width ** 2))
+      let length = hyp * 2
+
+      // For flexibility, build support for 2 dimensions
+      // but we're using only 1
       this.dimensions = {
-        height,
-        width
+        height: length,
+        width: length
       }
-      $canvas.height = height
-      $canvas.width = width
+
+      // Set negative margins to position center (pole star)
+      // with the text
+      $canvas.style.marginTop = `${-(length / 2 - height / 2)}px`
+      $canvas.style.marginLeft = `${-(length / 2 - width / 3)}px`
+
+      // Finally, set the actual dimensions to the canvas
+      $canvas.height = this.dimensions.height
+      $canvas.width = this.dimensions.width
     },
     /**
      * Start filling the skies
@@ -57,7 +65,7 @@ export default {
        * twinkling
        */
       const _generateDelta = () => {
-        return 0.005 + ((Math.floor(Math.random() * 30)) / 1000)
+        return 0.005 + ((Math.floor(Math.random() * 20)) / 1000)
       }
 
       /**
@@ -65,6 +73,13 @@ export default {
        */
       const _generateBrightness = () => {
         return Math.floor(Math.random() * 10) / 10
+      }
+
+      /**
+       * Generates minimum level of brightness
+       */
+      const _generateMin = () => {
+        return Math.floor(Math.random() * 3) / 10 + 0.1
       }
 
       /**
@@ -77,8 +92,8 @@ export default {
       /**
        * Returns maximum number of stars allowed on screen
        */
-      const _GET_MAX_STARS = () => {
-        return 100
+      const _GET_MAX_STARS = ({ width }) => {
+        return width > 2000 ? 256 : 128
       }
 
       /**
@@ -90,26 +105,35 @@ export default {
           const delta = _generateDelta()
           const brightness = _generateBrightness()
           const type = _generateType()
+          const min = _generateMin()
 
           return {
             x,
             y,
             delta,
             brightness,
-            type
+            type,
+            min
           }
         })
       }
 
-      this.stars = createStars(_GET_MAX_STARS())
+      // Populate state with required number of stars
+      this.stars = createStars(_GET_MAX_STARS(this.dimensions))
     },
 
+    /**
+     * Renders all stars from state on the nightsky
+     */
     render () {
       const { ctx } = this
 
       const _renderStar = star => {
-        const { x, y, brightness, type } = star
+        const { x, y, brightness } = star
         const color = `rgba(255, 255, 255, ${brightness})`
+
+        // Allow choice of different rendering schemes
+        // with array-based renderers
         const renderers = [
           _ => { // Large Square
             ctx.fillStyle = color
@@ -117,34 +141,38 @@ export default {
             ctx.rect(x, y, 2, 2)
             ctx.closePath()
             ctx.fill()
-          },
-          _ => { // Triangle Upward
-            ctx.strokeStyle = color
-            ctx.beginPath()
-            ctx.moveTo(x, y)
-            ctx.lineTo(x + 1, y + 2)
-            ctx.lineTo(x - 1, y + 2)
-            ctx.closePath()
-            ctx.fill()
           }
         ]
-        // Choose different renderer
-        renderers[type % renderers.length]()
+        renderers[0]()
       }
 
+      // Call the render function for all stars in state
       this.stars.map(_renderStar)
     },
 
+    /**
+     * Update state of nightsky for next tick
+     */
     update () {
+      /**
+       * Provide brightness of star in next tick,
+       * allows 'twinkling'
+       */
       const _updateBrightness = star => {
-        const { brightness, delta } = star
+        const { brightness, delta, min } = star
+        // `delta` can be positive or negative,
+        // add it to the star's `brightness` first
         star.brightness = brightness + delta
-        if (star.brightness >= 1 || star.brightness <= 0) star.delta *= -1
+        // If brightness exceeds 1 or is less than `min`,
+        // reverse direction of brightness change
+        if (star.brightness >= 1 || star.brightness <= min) star.delta *= -1
+        // ...And place hard floor/ceiling on possible values
         if (star.brightness > 1) star.brightness = 1
-        if (star.brightness < 0) star.brightness = 0
+        if (star.brightness < min) star.brightness = min
         return star
       }
 
+      // Update all stars in state immutably
       this.stars = this.stars.map(star => {
         let newStar = star
         newStar = _updateBrightness(newStar)
@@ -152,13 +180,17 @@ export default {
       })
     },
 
+    /**
+     * Clear complete canvas
+     */
     clear () {
       const { ctx, dimensions } = this
       ctx.clearRect(0, 0, dimensions.width, dimensions.height)
     },
 
     draw () {
-      // Loop
+      // Clear, update, and then render
+      // stars in state in the animation loop
       this.clear()
       this.update()
       this.render()
@@ -166,6 +198,8 @@ export default {
     }
   },
   created () {
+    // HACK: Use an initial setTimeout to ensure
+    // that DOM is rendered
     setTimeout(() => {
       this.setDimensions()
       this.init()
@@ -176,5 +210,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@keyframes time
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(360deg)
 
+.nightsky
+  // Make the sky rotate, slowly
+  animation time 256s linear infinite
+  transform-origin center center
 </style>

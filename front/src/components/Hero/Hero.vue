@@ -81,18 +81,28 @@ export default {
 
 .wrap
   position relative
+  z-index 5
 
 .masthead
   margin 0 0 12em
 
 .hero
-  background-color $color--hero-bg
-  background-image radial-gradient(circle at 25%, $color--hero-bg 10%, $color--hero-bg--dark)
+  background-color $color--hero-bg--dark
   background-position left top
   position relative
 
-.starry-night
-  // z-index -2
+  &:after
+    content ''
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background-image radial-gradient(circle at 25%, rgba(lighten($color--hero-bg, 5%), .8) 10%, rgba($color--hero-bg, 0))
+    z-index 3
+
+.nightsky
+  z-index 2
   position absolute
   left 0
   right 0
