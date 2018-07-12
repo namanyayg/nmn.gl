@@ -76,8 +76,8 @@ export default {
       })
       TweenLite.from($('.quote p'), 0.75, {
         opacity: 0,
-        // y: 30,
-        rotationX: 20,
+        y: 10,
+        rotationX: -10,
         ease: Power4.easeOut,
         delay: 0.825
       })
@@ -112,7 +112,7 @@ export default {
   width 100%
 
 .title
-  font-size 5em
+  font-size 4em
   font-weight bold
   margin .5em 0 0
   letter-spacing -.5px
@@ -169,13 +169,13 @@ export default {
   font-weight 300
 
 .quote
-  font-size 1.5em
-  margin 6rem 0 0
+  font-size 1.375em
+  margin 3rem 0 0
   position relative
   letter-spacing -.3px
   font-weight 400
   z-index 5
-  perspective 600
+  perspective 1200
 
   p
     margin 0 0 1em

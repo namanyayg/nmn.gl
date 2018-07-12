@@ -111,7 +111,7 @@ export default {
 
       ;[1, 2, 3].map(i => {
         TweenLite.from($(`.content p:nth-child(${i})`), 1, {
-          y: 20,
+          y: 10,
           rotationX: -10,
           opacity: 0,
           ease: Power4.easeOut,
