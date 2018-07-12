@@ -58,33 +58,34 @@ export default {
       })
       TweenLite.from($('.title'), 0.75, {
         opacity: 0,
-        x: -100,
+        x: -40,
         ease: Power4.easeOut,
-        delay: 0.625
+        delay: 0.5
       })
       TweenLite.from($('.subtitle'), 0.75, {
         opacity: 0,
-        x: 100,
+        x: 40,
         ease: Power4.easeOut,
-        delay: 0.75
+        delay: 0.625
       })
       TweenLite.from($('.role'), 0.75, {
         opacity: 0,
         y: 20,
         ease: Power4.easeOut,
-        delay: 0.875
+        delay: 0.75
       })
       TweenLite.from($('.quote p'), 0.75, {
         opacity: 0,
-        y: 50,
+        // y: 30,
+        rotationX: 20,
         ease: Power4.easeOut,
-        delay: 1
+        delay: 0.825
       })
       TweenLite.from($('.quote .foot'), 0.75, {
         opacity: 0,
-        x: 50,
+        x: 20,
         ease: Power4.easeOut,
-        delay: 1.125
+        delay: 1
       })
     }
   },
@@ -174,9 +175,11 @@ export default {
   letter-spacing -.3px
   font-weight 400
   z-index 5
+  perspective 600
 
   p
     margin 0 0 1em
+    transform-origin center bottom
 
     &:before,
     &:after
