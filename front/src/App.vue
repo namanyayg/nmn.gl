@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <CursorBall/>
     <router-view/>
     <Colophon/>
   </div>
@@ -15,13 +14,11 @@
  * UntitleClothing integration
  */
 
-import CursorBall from './components/CursorBall'
 import Colophon from './components/Colophon'
 
 export default {
   name: 'App',
   components: {
-    CursorBall,
     Colophon
   }
 }
@@ -40,7 +37,6 @@ export default {
 body
   font-family Europa, monospace
   color $color--body-text
-  cursor none
   user-select none
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale

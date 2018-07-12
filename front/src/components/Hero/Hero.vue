@@ -90,6 +90,7 @@ export default {
   background-color $color--hero-bg--dark
   background-position left top
   position relative
+  overflow hidden
 
   &:after
     content ''
