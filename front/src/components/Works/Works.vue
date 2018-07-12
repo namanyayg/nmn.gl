@@ -5,7 +5,7 @@
         .wrap
           header.header
             h1.title Works
-            .subtitle selected cases from advancing 60+ businesses over the last 5+ years.
+            .subtitle Selected cases from advancing 60+ businesses over the last 5+ years.
     .works
       Work(v-for="work in getWorks('featured')" :key="work" :data="works[work]")
 </template>

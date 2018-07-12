@@ -136,6 +136,7 @@ export default {
     width 40%
 
 .role
+  font-size 1.125em
   .marker
     margin-right .25em
     text-transform uppercase
