@@ -7,14 +7,17 @@
         h1.title
           // changing title based on user viewType
           template(v-if="viewType === 'ui'")
-            <span>
-              <span>Crafting <strong>pleasing user interfaces</strong></span>
-              <span class="highlight"></span>
-            </span>
-            <br>
-            <span>that increase conversion rates</span>
-            <br>
-            <span>and make your users <strong>happy</strong></span>
+            span Pleasing interfaces <span class="amp">&</span> experiences
+            br
+            span
+              span
+                strong that increase conversion rates
+              span.highlight
+            br
+            span and make your users&nbsp;
+              span
+                strong happy
+                span.highlight
           template(v-else="")
             <span>Crafting comprehensive</span>
             <br>
@@ -63,10 +66,15 @@ export default {
         })
       })
 
-      TweenLite.from($('.highlight'), 2, {
-        delay: 1,
-        scaleX: 0,
-        ease: Power4.easeOut
+      ;[1, 2].map(i => {
+        const $el = $$('.highlight')[i - 1]
+        if ($el) {
+          TweenLite.from($el, 2, {
+            scaleX: 0,
+            ease: Power4.easeOut,
+            delay: 1 + (0.5 * (i - 1))
+          })
+        }
       })
 
       const nameTransition = window.matchMedia('(max-width: 55em)').matches ? { y: 50 } : { x: 50 }
@@ -159,6 +167,11 @@ export default {
     transform perspective(10)
     background linear-gradient(45deg, darken($color--highlight, 10%), $color--highlight, darken($color--highlight, 20%))
     z-index -1
+
+.amp
+  font-family 'adobe-caslon-pro'
+  line-height 1
+  font-style italic
 
 .hero-button
   padding 2em 5em
