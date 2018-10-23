@@ -9,10 +9,10 @@
 /**
  * @TODO
  *
- * Favicons
- * Add project-based views of the website, a la rightmessage
- * UntitleClothing integration
+ * - Favicons
+ * - UntitleClothing integration
  */
+import { mapActions } from 'vuex'
 
 import Colophon from './components/Colophon'
 
@@ -20,6 +20,19 @@ export default {
   name: 'App',
   components: {
     Colophon
+  },
+  methods: {
+    ...mapActions(['fetchViewTypeFromRoute']),
+
+    async fetchViewType () {
+      const { $route } = this
+      const viewHash = await this.fetchViewTypeFromRoute($route)
+      // make sure to delete the viewHash when loaded
+      this.$router.replace($route.fullPath.replace(viewHash, ''))
+    }
+  },
+  created () {
+    this.fetchViewType()
   }
 }
 </script>

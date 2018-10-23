@@ -5,13 +5,32 @@
       Bg
       .wrap
         h1.title
-          <span>Crafting comprehensive</span><br><span><strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong><span class="highlight"></span></span><br><span>to&nbsp;your business&nbsp;problems.</span>
+          // changing title based on user viewType
+          template(v-if="viewType === 'ui'")
+            <span>
+              <span>Crafting <strong>pleasing user interfaces</strong></span>
+              <span class="highlight"></span>
+            </span>
+            <br>
+            <span>that increase conversion rates</span>
+            <br>
+            <span>and make your users <strong>happy</strong></span>
+          template(v-else="")
+            <span>Crafting comprehensive</span>
+            <br>
+            <span>
+              <strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong>
+              <span class="highlight"></span>
+            </span>
+            <br>
+            <span>to&nbsp;your business&nbsp;problems.</span>
         .name Namanyay Goel
       .wrap.hero__bottom
         Scroller(color="light").scroller
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { TweenLite, Power4, Elastic } from 'gsap'
 import HeroBg from './HeroBg'
 import Masthead from '../Masthead'
@@ -23,6 +42,9 @@ export default {
     Masthead,
     Scroller,
     Bg: HeroBg
+  },
+  computed: {
+    ...mapGetters(['viewType'])
   },
   methods: {
     beginAnimation () {

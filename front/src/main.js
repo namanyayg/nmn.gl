@@ -5,6 +5,7 @@ import App from './App'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
@@ -19,6 +20,7 @@ Vue.axios.defaults.baseURL = baseUrl
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'
