@@ -11,7 +11,7 @@
             br
             span
               span
-                strong that increase conversion rates
+                strong that&nbsp;increase conversion&nbsp;rates
               span.highlight
             br
             span and make your users&nbsp;
@@ -22,7 +22,7 @@
             <span>Crafting comprehensive</span>
             <br>
             <span>
-              <strong>web&nbsp;&&nbsp;blockchain&nbsp;solutions</strong>
+              <strong>web&nbsp;&&nbsp;blockchain solutions</strong>
               <span class="highlight"></span>
             </span>
             <br>
@@ -214,21 +214,32 @@ export default {
   .scroller
     display none
 
-@media (max-width 45em)
+@media (max-width 62.5em)
   .title
     font-size 2.5em
 
   .name
     font-size 1.125em
 
-@media (max-width 37.5em)
+@media (max-width 40em)
   .title
     font-size 2em
 
   .name
     font-size 1em
 
-@media (max-width 27.5em)
+@media (max-width 32.5em)
   .title
     font-size 1.675em
+
+@media (max-width 27.5em)
+  .title
+    font-size 1.375em
+
+    .highlight
+      height 2px !important
+
+@media (max-width 22.5em)
+  .highlight
+    display none !important
 </style>
