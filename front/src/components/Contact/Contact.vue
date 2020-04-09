@@ -3,16 +3,15 @@
     .contact
       .wrap
         .row
-          .col-md-4.persp
+          .persp
             .title Contact
             .content
-              p Tell me about yourself, your brand, and your goals. Let's create something extraordinary, together.
+              p(v-if="isAccepting") Accepting select projects only (as of {{ currentQuarter }}).
 
-              p(v-if="isAccepting") Accepting new projects for {{ currentQuarter }}.
-
-              p Don't like forms? Write to me at&nbsp;
+              p Write to me at&nbsp;
                 a(href="mailto:hi@nmn.gl") hi@nmn.gl
-          .col-md-6.offset-md-2.persp
+                |  if you wish to create something extraordinary.
+          //- .col-md-6.offset-md-2.persp
             .thank-you
               p
                 strong Thank you for reaching out.
