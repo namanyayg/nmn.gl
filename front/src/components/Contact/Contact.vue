@@ -2,48 +2,18 @@
   .page.scene#contact
     .contact
       .wrap
-        .row
-          .persp
-            .title Contact
-            .content
-              p(v-if="isAccepting") Accepting select projects only (as of {{ currentQuarter }}).
+        .persp
+          .title Contact
+          .content
+            p(v-if="isAccepting") Accepting select projects only (as of {{ currentQuarter }}).
 
-              p Write to me at&nbsp;
-                a(href="mailto:hi@nmn.gl") hi@nmn.gl
-                |  if you wish to create something extraordinary.
-          //- .col-md-6.offset-md-2.persp
-            .thank-you
-              p
-                strong Thank you for reaching out.
-              p I have received your message and will get back to you soon.
-            form(@submit.prevent="submitRfq")
-              label.control
-                input.element(v-model="rfq.name" required)
-                span.label(class="") Name
-                .foci
-              label.control
-                input.element(type="email" v-model="rfq.from" required)
-                span.label Email
-                .foci
-              label.control
-                textarea.element(v-model="rfq.message" required)
-                span.label Describe what you&rsquo;re looking for
-                .foci
-              label.control
-                select.element(v-model="rfq.budget" required)
-                  option(disabled selected style="display: none")
-                  option $1000&thinsp;&ndash;&thinsp;$2000
-                  option $2000&thinsp;&ndash;&thinsp;$5000
-                  option $5000&thinsp;&ndash;&thinsp;$15000
-                  option $15000+
-                span.label Budget
-                .foci
-              .button-container.control
-                button Send Message
+            p Write to me at&nbsp;
+              a(href="mailto:hi@nmn.gl") hi@nmn.gl
+              |  if you wish to create something extraordinary.
 </template>
 
 <script>
-import { TweenLite, Power4, Elastic } from 'gsap'
+import { TweenLite, Power4 } from 'gsap'
 
 export default {
   name: 'Contact',
@@ -100,7 +70,6 @@ export default {
     beginAnimation () {
       this.$el.classList.remove('scene--set')
       const $ = el => this.$el.querySelector(el)
-      const $$ = el => this.$el.querySelectorAll(el)
 
       TweenLite.from($('.title'), 1, {
         rotationX: 80,
@@ -115,15 +84,6 @@ export default {
           opacity: 0,
           ease: Power4.easeOut,
           delay: 0.25 * i
-        })
-      })
-
-      ;[1, 2, 3, 4, 5].map(i => {
-        TweenLite.from($$(`.control`)[i - 1], 1.5, {
-          rotationY: -20,
-          opacity: 0,
-          ease: Elastic.easeInOut.config(1, 1),
-          delay: 0.125 * (i - 1)
         })
       })
     }
@@ -228,6 +188,7 @@ button
 
 @media (max-width 48em)
   .title
+    font-size 2.75em
     margin 0 0 .5em
 
   .page
@@ -238,7 +199,10 @@ button
 
 @media (max-width 30em)
   .title
-    font-size 2.75em
+    font-size 2.5em
     line-height 1
     margin 0 0 2rem
+
+  .content
+    font-size 1em
 </style>

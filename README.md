@@ -20,18 +20,3 @@ Run Vue for development
 ```
 yarn run dev # launches at localhost:8080
 ```
-
-### Back-end 💁
-
-Navigate to `server` and install dependencies.
-
-```
-cd server
-yarn # or 'npm i'
-```
-
-Run Express server for development. Consider using `nodemon` or similar to live reload.
-
-```
-node ./bin/www
-```

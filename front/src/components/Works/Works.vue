@@ -37,23 +37,24 @@ export default {
 </script>
 
 <style lang="stylus">
-.header
-  display flex
-  width 100%
-  justify-content space-between
-  align-items center
+.work
+  .header
+    display flex
+    width 100%
+    justify-content space-between
+    align-items center
 
-.work-intro
-  padding 3em 0
+  .work-intro
+    padding 3em 0
 
-.title
-  font-size 4em
-  font-weight bold
+  .title
+    font-size 4em
+    font-weight bold
 
-.subtitle
-  font-style italic
-  font-size 1.5em
-  font-weight 300
+  .subtitle
+    font-style italic
+    font-size 1.5em
+    font-weight 300
 
 @media (max-width 67.5em)
   .header

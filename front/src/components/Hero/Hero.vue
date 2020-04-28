@@ -5,36 +5,27 @@
       Bg
       .wrap
         h1.title
-          // changing title based on user viewType
-          template(v-if="viewType === 'ui'")
-            span Pleasing interfaces <span class="amp">&</span> experiences
-            br
+          span Crafting pleasing interfaces <span class="amp">&</span>
+          br
+          span
             span
-              span
-                strong that&nbsp;increase conversion&nbsp;rates
+              strong delightful experiences
               span.highlight
-            br
-            span and make your users&nbsp;
-              span
-                strong happy
-                span.highlight
-          template(v-else="")
-            <span>Crafting comprehensive</span>
-            <br>
-            <span>
-              <strong>web&nbsp;&&nbsp;blockchain solutions</strong>
-              <span class="highlight"></span>
-            </span>
-            <br>
-            <span>to&nbsp;your business&nbsp;problems.</span>
-        .name Namanyay Goel
+            span &nbsp;used by
+          br
+          span
+            span
+              strong millions
+              span.highlight
+            span &nbsp;of people, worldwide.
+        h2.subtitle Hey, I&rsquo;m <strong class="highlight">Namanyay Goel</strong>. Using over 9 years of development experience; I craft <em>exemplary</em> products for mobiles, blockchains, and the <em>worldwide web</em>.
       .wrap.hero__bottom
         Scroller(color="light").scroller
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { TweenLite, Power4, Elastic } from 'gsap'
+import { TweenLite, Power4 } from 'gsap'
 import HeroBg from './HeroBg'
 import Masthead from '../Masthead'
 import Scroller from './Scroller'
@@ -77,13 +68,11 @@ export default {
         }
       })
 
-      const nameTransition = window.matchMedia('(max-width: 55em)').matches ? { y: 50 } : { x: 50 }
-
-      TweenLite.from($('.name'), 2, {
+      TweenLite.from($('.subtitle'), 2, {
         delay: 0.75,
-        ease: Elastic.easeOut.config(1, 0.75),
+        ease: Power4.easeOut,
         opacity: 0,
-        ...nameTransition
+        y: 10
       })
 
       TweenLite.from($('.hero__bottom'), 1, {
@@ -114,7 +103,7 @@ export default {
   z-index 5
 
 .masthead
-  margin 0 0 12em
+  margin 0 0 8em
 
 .hero
   background-color $color--hero-bg--dark
@@ -141,7 +130,7 @@ export default {
   bottom 0
 
 .hero__bottom
-  padding-bottom 18em
+  padding-bottom 14em
 
 .title
   margin 0
@@ -157,6 +146,7 @@ export default {
   strong
     font-weight 700
     color $color--hero-title
+    text-shadow 1px 1px 0 $color--hero-bg, -1px 1px 0 $color--hero-bg, 2px 2px 0 $color--hero-bg, -2px 2px 0 $color--hero-bg
 
   .highlight
     position absolute
@@ -168,6 +158,21 @@ export default {
     background linear-gradient(45deg, darken($color--highlight, 10%), $color--highlight, darken($color--highlight, 20%))
     z-index -1
 
+.subtitle
+  margin 0
+  font-weight 300
+  font-size 2em
+  color $color--hero-subtitle
+  font-style none
+  margin 2em 0 0
+  max-width 30em
+
+  strong
+    font-weight bold
+
+  .highlight
+    color $color--hero-text
+
 .amp
   font-family 'adobe-caslon-pro'
   line-height 1
@@ -177,17 +182,6 @@ export default {
   padding 2em 5em
   box-sizing border-box
 
-.name
-  position absolute
-  color $color--hero-text--light
-  right 0
-  top 50%
-  font-size 1.375em
-  text-transform uppercase
-  letter-spacing .25em
-  transform rotate(-90deg) translateY(-25%) translateX(57%)
-  transform-origin center right
-
 @media (max-width 82.5em)
   .title
     font-size 3em
@@ -195,16 +189,10 @@ export default {
     .highlight
       height .25rem
 
-  .name
-    font-size 1em
+  .subtitle
+    font-size 1.5em
 
 @media (max-width 55em)
-  .name
-    position static
-    transform none
-    font-size 1.375em
-    margin 3em 0 0
-
   .masthead
     margin 0 0 6em
 
@@ -218,19 +206,19 @@ export default {
   .title
     font-size 2.5em
 
-  .name
-    font-size 1.125em
+  .subtitle
+    font-size 1.25em
 
 @media (max-width 40em)
   .title
     font-size 2em
 
-  .name
-    font-size 1em
-
 @media (max-width 32.5em)
   .title
     font-size 1.675em
+
+  .subtitle
+    font-size 1em
 
 @media (max-width 27.5em)
   .title
@@ -238,8 +226,4 @@ export default {
 
     .highlight
       height 2px !important
-
-@media (max-width 22.5em)
-  .highlight
-    display none !important
 </style>

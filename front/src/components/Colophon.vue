@@ -8,7 +8,7 @@
         .col-md-3.col-6.list
           p
             strong Namanyay Goel ⚡
-          p Web & Blockchain Consultant
+          p Web & Mobile Consultant
           p
             a(href="https://github.com/namanyayg/nmn.gl") view source
           p
@@ -18,10 +18,6 @@
             a(href="https://github.com/namanyayg") github
           p
             a(href="https://twitter.com/namanyayg") twitter
-          p
-            a(href="https://dribbble.com/namanyayg") dribbble
-          p
-            a(href="https://instagram.com/namanyayg") instagram
 </template>
 
 <script>
@@ -37,23 +33,12 @@ export default {
     beginAnimating () {
       this.$el.classList.remove('scene--set')
       const $ = el => this.$el.querySelector(el)
-      const $$ = el => this.$el.querySelectorAll(el)
 
       TweenLite.from($('.logo-container'), 0.5, {
         y: 40,
         opacity: 0,
         ease: Power4.easeOut,
         delay: 0.25
-      })
-
-      ;[1, 2].map(i => {
-        ;[1, 2, 3, 4].map(j => {
-          TweenLite.from($$(`.list p`)[((i - 1) * 4) + (j - 1)], 0.5, {
-            y: 20,
-            opacity: 0,
-            delay: ((i - 1) * 0.375) + (j * 0.125)
-          })
-        })
       })
     }
   },
